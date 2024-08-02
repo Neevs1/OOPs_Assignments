@@ -98,6 +98,12 @@ class complex{
 	void subtraction(complex b) {
 		
 	}
+	void multiplication(complex b) {
+		
+	}
+    void division(complex b) {
+		
+	}
 }
 
 public class display {
@@ -108,11 +114,14 @@ public class display {
 		String input2 = sc.nextLine();
 		complex c2 = new complex(input2);
 		System.out.println("Enter operation of choice");
+		System.out.println("1.Addition\n2.Subtraction\n3.Multiplication\n4.Division");
 		int choice = sc.nextInt();
 		switch(choice) {
 		case 1:
 			c.addition(c2);
 			break;
+		case 2:
+			c.subtraction(c2);
 		default:
 			System.out.println("Invalid operation");
 		}
