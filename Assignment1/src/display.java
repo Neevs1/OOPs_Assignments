@@ -96,13 +96,35 @@ class complex{
 		}
 	}
 	void subtraction(complex b) {
+		real = real-b.real;
+		imaginary = imaginary-b.imaginary;
+		if (imaginary<0) {
+			System.out.println("Sum is "+real+""+imaginary+"i");	
+		}else if(real==0){
+		System.out.println("Sum is "+imaginary+"i");
+		}else if(imaginary==0){
+			System.out.println("Sum is "+real+"-"+imaginary+"i");			
+		}else {
+			System.out.println("Sum is "+real+"+"+imaginary+"i");
+		}
 		
 	}
 	void multiplication(complex b) {
+		if(((real*b.imaginary)+(b.real*imaginary))<0) {
+			System.out.println("Product is " +((real*b.real)-imaginary*b.imaginary)+((real*b.imaginary)+(b.real*imaginary)+"i"));
+		}else if(((real*b.imaginary)+(b.real*imaginary))==0) {
+			System.out.println("Product is " +((real*b.real)-imaginary*b.imaginary));			
+	    }else if((((real*b.real)-imaginary*b.imaginary))==0) {
+			System.out.println("Product is " +((real*b.imaginary)+(b.real*imaginary)+"i"));			
+	    }else{
+			System.out.println("Product is " +((real*b.real)-imaginary*b.imaginary)+"+"+((real*b.imaginary)+(b.real*imaginary)+"i"));
+		}
 		
 	}
     void division(complex b) {
-		
+		if(b.real==0&&b.imaginary==0) {
+			System.out.println("Math error: Division by 0 not possible");
+		}
 	}
 }
 
@@ -122,6 +144,14 @@ public class display {
 			break;
 		case 2:
 			c.subtraction(c2);
+			break;
+		case 3:
+			c.multiplication(c2);
+			break;
+		case 4:
+			c.division(c2);
+			break;
+			
 		default:
 			System.out.println("Invalid operation");
 		}
