@@ -124,6 +124,18 @@ class complex{
     void division(complex b) {
 		if(b.real==0&&b.imaginary==0) {
 			System.out.println("Math error: Division by 0 not possible");
+		}else {
+			float realTerm = (((real*b.real)+(imaginary*b.imaginary))/(((float)(Math.pow(b.real, 2))+((float)(Math.pow(b.imaginary, 2))))));
+			float imagTerm = (((imaginary*b.real)-(real*b.imaginary))/(((float)(Math.pow(b.real, 2))+((float)(Math.pow(b.imaginary, 2))))));
+			if(imagTerm<0) {
+				System.out.println("Quotient is "+realTerm+""+imagTerm+"i");
+			}else if(realTerm==0){
+				System.out.println("Quotient is "+imagTerm+"i");
+			}else if(imagTerm==0) {
+				System.out.println("Quotient is "+realTerm);
+			}else {
+				System.out.println("Quotient is "+realTerm+"+"+imagTerm+"i");
+			}
 		}
 	}
 }
@@ -131,9 +143,11 @@ class complex{
 public class display {
 	public static void main(String[]args) {
 		Scanner sc = new Scanner(System.in);
+		String repeat;
+		do {
 		complex c = new complex();
 		System.out.println("Enter second number(Enter 0-(number)i if negative imaginary)");
-		String input2 = sc.nextLine();
+		String input2 = sc.next();
 		complex c2 = new complex(input2);
 		System.out.println("Enter operation of choice");
 		System.out.println("1.Addition\n2.Subtraction\n3.Multiplication\n4.Division");
@@ -155,6 +169,11 @@ public class display {
 		default:
 			System.out.println("Invalid operation");
 		}
+		System.out.println("Do you wish to use the calculator again\nType Yes to confirm\nPress any other key to exit");
+		repeat = sc.next();
+		repeat = repeat.toLowerCase();
+		//System.out.print(repeat);
+		}while(repeat.equals("yes"));
 		
 	}
 
