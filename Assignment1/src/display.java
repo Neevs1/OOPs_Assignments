@@ -123,7 +123,7 @@ class complex{
 		
 	}
 	void multiplication(complex b) { //method for multiplication
-		if(((real*b.imaginary)+(b.real*imaginary))<0) {
+		if(((real*b.imaginary)+(b.real*imaginary))<0) { //output condition for -ve imaginary number
 			System.out.println("Product is " +((real*b.real)-imaginary*b.imaginary)+((real*b.imaginary)+(b.real*imaginary)+"i"));
 		}else if(((real*b.imaginary)+(b.real*imaginary))==0) {
 			System.out.println("Product is " +((real*b.real)-imaginary*b.imaginary));			
