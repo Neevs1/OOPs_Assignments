@@ -134,9 +134,9 @@ class complex{
 		}
 		
 	}
-    void division(complex b) {
+    void division(complex b) {//method for division
 		if(b.real==0&&b.imaginary==0) {
-			System.out.println("Math error: Division by 0 not possible");
+			System.out.println("Math error: Division by 0 not possible"); //validation for division by 0
 		}else {
 			float realTerm = (((real*b.real)+(imaginary*b.imaginary))/(((float)(Math.pow(b.real, 2))+((float)(Math.pow(b.imaginary, 2))))));
 			float imagTerm = (((imaginary*b.real)-(real*b.imaginary))/(((float)(Math.pow(b.real, 2))+((float)(Math.pow(b.imaginary, 2))))));
@@ -185,7 +185,7 @@ public class display {
 		System.out.println("Do you wish to use the calculator again\nType Yes to confirm\nPress any other key to exit");
 		repeat = sc.next();
 		repeat = repeat.toLowerCase();
-		//System.out.print(repeat);
+		
 		}while(repeat.equals("yes"));
 		
 	}
