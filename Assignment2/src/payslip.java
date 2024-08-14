@@ -11,7 +11,7 @@ class employee{ //defined class employee
 	Scanner sc = new Scanner(System.in);
 	String mail_id;
 	String[] emp_name = new String[2];
-	String[] address = new String[6];
+	String address;
 	int emp_id;
 	long mob_no;
 	//defined required variables
@@ -61,25 +61,14 @@ class employee{ //defined class employee
 				System.out.println("Invalid phone number");
 			}
 		}while(valid==false);
-		System.out.println("Enter address(Leave space blank if not applicable,seperate by underscore for multiple words)");
-		System.out.println("Enter house number+residency complex");
-		address[0]=sc.next();
-		System.out.println("Enter Locality+street");
-		address[1]=sc.next();
-		System.out.println("Enter City");
-		address[2]=sc.next();
-		System.out.println("Enter State");
-		address[3]=sc.next();
-		System.out.println("Enter Country");
-		address[4]=sc.next();
-		System.out.println("Enter postal code");
-		address[5]=sc.next();		
+		System.out.println("Enter address(Seperate by underscore for multiple words)");
+		address = sc.nextLine();
 		
 	}
 }
 
 class programmer extends employee{
-	
+		
 	
 }
 
