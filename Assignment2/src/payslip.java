@@ -9,7 +9,9 @@ import java.util.*;
 
 class employee{ //defined class employee
 	Scanner sc = new Scanner(System.in);
-	String emp_name,address,mail_id; 
+	String mail_id;
+	String[] emp_name = new String[2];
+	String[] address = new String[6];
 	int emp_id;
 	long mob_no;
 	//defined required variables
@@ -17,8 +19,9 @@ class employee{ //defined class employee
 		boolean validity,valid;
 		System.out.println("Enter employee id");
 		emp_id = sc.nextInt();
-		System.out.println("Enter name");
-		emp_name = sc.next();
+		System.out.println("Enter name(format:Firstname lastname)");
+		emp_name[0] = sc.next();
+		emp_name[1]= sc.next();
 		do{
 		    System.out.println("Enter email id");
 		    mail_id = sc.next();
@@ -58,8 +61,19 @@ class employee{ //defined class employee
 				System.out.println("Invalid phone number");
 			}
 		}while(valid==false);
-		
-		
+		System.out.println("Enter address(Leave space blank if not applicable,seperate by underscore for multiple words)");
+		System.out.println("Enter house number+residency complex");
+		address[0]=sc.next();
+		System.out.println("Enter Locality+street");
+		address[1]=sc.next();
+		System.out.println("Enter City");
+		address[2]=sc.next();
+		System.out.println("Enter State");
+		address[3]=sc.next();
+		System.out.println("Enter Country");
+		address[4]=sc.next();
+		System.out.println("Enter postal code");
+		address[5]=sc.next();		
 		
 	}
 }
@@ -84,8 +98,8 @@ class PM extends employee{
 public class payslip {
 
 	public static void main(String[] args) {
-		employee e = new employee();
-		e.getdata();
+		/*employee e = new employee();
+		e.getdata();*/
 		
 	}
 
