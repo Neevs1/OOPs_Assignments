@@ -76,7 +76,10 @@ class employee{ //defined class employee
 
 class programmer extends employee{
 	int basicPay = 75000;
-	
+	int dA = 97*basicPay/100;
+	int hRA = 10*basicPay/100;
+	int pF = 12*basicPay/100;
+	int clubFund = basicPay/1000;
 	
 	void display() {
 		System.out.println("===================================================");
@@ -85,15 +88,16 @@ class programmer extends employee{
 		System.out.println("|	Name: "+emp_name[0]+" "+emp_name[1]+"|");
 		System.out.println("|	Address: "+address+"|");
 		System.out.println("|	Basic Pay: "+basicPay+"		 |");
-		System.out.println("|	DA: "+dA+"		   			 |");
-		System.out.println("|	HRA: "+hRA+"		 |");
-		int grossSalary = basicPay+dA+hRA;
+		System.out.println("|	DA: "+this.dA+"		   			 |");
+		System.out.println("|	HRA: "+this.hRA+"		 |");
+		int grossSalary = basicPay+this.dA+this.hRA;
 		System.out.println("|	Gross payable salary: "+grossSalary+"	 |");
-		System.out.println("|	Provident Fund: "+pF+"		 |");
-		System.out.println("|	Staff club fund: "+clubFund+"		 |");
-		int netSalary = grossSalary - pF - clubFund;
+		System.out.println("|	Provident Fund: "+this.pF+"		 |");
+		System.out.println("|	Staff club fund: "+this.clubFund+"		 |");
+		int netSalary = grossSalary - this.pF - this.clubFund;
 		System.out.println("|	Net payable salary: "+netSalary+"	 |");
 		System.out.println("==================================================");
+		System.out.println();
 		
 		
 	}
@@ -104,24 +108,28 @@ class programmer extends employee{
 
 class teamLead extends employee{
     int basicPay = 150000;
-	
+    int dA = 97*basicPay/100;
+	int hRA = 10*basicPay/100;
+	int pF = 12*basicPay/100;
+	int clubFund = basicPay/1000;
 	
 	void display() {
 		System.out.println("===================================================");
-		System.out.println("|	Post: Programmer			 |");
+		System.out.println("|	Post: Team Lead	 |");
 		System.out.println("|	Employee id: "+emp_id+"		 |");
 		System.out.println("|	Name: "+emp_name[0]+" "+emp_name[1]+"|");
 		System.out.println("|	Address: "+address+"|");
 		System.out.println("|	Basic Pay: "+basicPay+"		 |");
-		System.out.println("|	DA: "+dA+"		   			 |");
-		System.out.println("|	HRA: "+hRA+"		 |");
-		int grossSalary = basicPay+dA+hRA;
+		System.out.println("|	DA: "+this.dA+"		   			 |");
+		System.out.println("|	HRA: "+this.hRA+"		 |");
+		int grossSalary = this.basicPay+this.dA+this.hRA;
 		System.out.println("|	Gross payable salary: "+grossSalary+"	 |");
-		System.out.println("|	Provident Fund: "+pF+"		 |");
-		System.out.println("|	Staff club fund: "+clubFund+"		 |");
-		int netSalary = grossSalary - pF - clubFund;
+		System.out.println("|	Provident Fund: "+this.pF+"		 |");
+		System.out.println("|	Staff club fund: "+this.clubFund+"		 |");
+		int netSalary = grossSalary - this.pF - this.clubFund;
 		System.out.println("|	Net payable salary: "+netSalary+"	 |");
 		System.out.println("==================================================");
+		System.out.println();
 		
 		
 		
@@ -131,25 +139,29 @@ class teamLead extends employee{
 
 class ASP extends employee{
     int basicPay = 250000;
-	
+    int dA = 97*basicPay/100;
+	int hRA = 10*basicPay/100;
+	int pF = 12*basicPay/100;
+	int clubFund = basicPay/1000;
 	
 	void display() {
 		System.out.println("===================================================");
-		System.out.println("|	Post: Programmer			 |");
+		System.out.println("|	Post: Assistant Project Manager |");
 		System.out.println("|	Employee id: "+emp_id+"		 |");
 		System.out.println("|	Name: "+emp_name[0]+" "+emp_name[1]+"|");
 		System.out.println("|	Address: "+address+"|");
 		System.out.println("|	Basic Pay: "+basicPay+"		 |");
-		System.out.println("|	DA: "+dA+"		   			 |");
-		System.out.println("|	HRA: "+hRA+"		 |");
-		int grossSalary = basicPay+dA+hRA;
+		System.out.println("|	DA: "+this.dA+"		   			 |");
+		System.out.println("|	HRA: "+this.hRA+"		 |");
+		int grossSalary = this.basicPay+this.dA+this.hRA;
 		System.out.println("|	Gross payable salary: "+grossSalary+"	 |");
-		System.out.println("|	Provident Fund: "+pF+"		 |");
-		System.out.println("|	Staff club fund: "+clubFund+"		 |");
-		int netSalary = grossSalary - pF - clubFund;
+		System.out.println("|	Provident Fund: "+this.pF+"		 |");
+		System.out.println("|	Staff club fund: "+this.clubFund+"		 |");
+		int netSalary = grossSalary - this.pF - this.clubFund;
 		System.out.println("|	Net payable salary: "+netSalary+"	 |");
 		System.out.println("==================================================");
-		
+		System.out.println();
+				
 		
 	}
 	
@@ -157,25 +169,28 @@ class ASP extends employee{
 
 class PM extends employee{
   int basicPay = 450000;
-	
+  int dA = 97*basicPay/100;
+	int hRA = 10*basicPay/100;
+	int pF = 12*basicPay/100;
+	int clubFund = basicPay/1000;	
 	
 	void display() {
 		System.out.println("===================================================");
-		System.out.println("|	Post: Programmer			 |");
+		System.out.println("|	Post: Prject Manager		 |");
 		System.out.println("|	Employee id: "+emp_id+"		 |");
 		System.out.println("|	Name: "+emp_name[0]+" "+emp_name[1]+"|");
 		System.out.println("|	Address: "+address+"|");
 		System.out.println("|	Basic Pay: "+basicPay+"		 |");
-		System.out.println("|	DA: "+dA+"		   			 |");
-		System.out.println("|	HRA: "+hRA+"		 |");
-		int grossSalary = basicPay+dA+hRA;
+		System.out.println("|	DA: "+this.dA+"		   			 |");
+		System.out.println("|	HRA: "+this.hRA+"		 |");
+		int grossSalary = this.basicPay+this.dA+this.hRA;
 		System.out.println("|	Gross payable salary: "+grossSalary+"	 |");
-		System.out.println("|	Provident Fund: "+pF+"		 |");
-		System.out.println("|	Staff club fund: "+clubFund+"		 |");
-		int netSalary = grossSalary - pF - clubFund;
+		System.out.println("|	Provident Fund: "+this.pF+"		 |");
+		System.out.println("|	Staff club fund: "+this.clubFund+"		 |");
+		int netSalary = grossSalary - this.pF - this.clubFund;
 		System.out.println("|	Net payable salary: "+netSalary+"	 |");
 		System.out.println("==================================================");
-		
+		System.out.println();		
 		
 	}
 	
@@ -196,9 +211,11 @@ public class payslip {
 		assistant.getdata();
 		System.out.println("Enter details of Project Manager");
 		manager.getdata();
-		
+		System.out.println("Displaying salary slips of all employees");
 		p.display();
-		
+		t.display();
+		assistant.display();
+		manager.display();
 	}
 
 }
