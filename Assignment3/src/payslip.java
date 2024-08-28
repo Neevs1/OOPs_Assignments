@@ -18,14 +18,14 @@ class employee{ //defined class employee
 	
 	int dA,hRA ,pF, clubFund,grossSalary,netSalary ;
 	//defined required variables
-	void getdata() {
+	void getdata() { //method for input
 		boolean validity,valid;
 		System.out.println("Enter employee id");
 		emp_id = sc.nextInt();
 		System.out.println("Enter name(format:Firstname lastname)");
 		emp_name[0] = sc.next();
 		emp_name[1]= sc.next();
-		do{
+		do{ //only accepts valid email id in form <email>@<domainname>.<domain> or <email>@<name>.<subdomain>.<domain>
 		    System.out.println("Enter email id");
 		    mail_id = sc.next();
 		    int c1=0,c2=0;
@@ -53,7 +53,7 @@ class employee{ //defined class employee
 		 }
 		
 		}while(validity == false);
-		do{
+		do{ //accept valid 10 digit number. cannot start with 0
 			
 			System.out.println("Enter phone number");
 			mob_no=sc.nextLong();			
@@ -71,9 +71,9 @@ class employee{ //defined class employee
 	
 }
 
-class programmer extends employee{
-	int basicPay = 75000;
-	 programmer(){
+class programmer extends employee{ //programmer class derived from employee
+	int basicPay = 75000;//defined basic pay for a programmer
+	 programmer(){ //constructor for calculation and display of initial message
 		 dA = 97*basicPay/100;
 		 hRA = 10*basicPay/100;
 		 pF = 12*basicPay/100;
@@ -82,7 +82,7 @@ class programmer extends employee{
 	 }
 	 
 	
-	void display() {
+	void display() { //display function. Makes use of loops for smooth printing
 		System.out.println("|==================================================|");
 		System.out.print("|	Name: "+emp_name[0]+" "+emp_name[1]);
 		for(int i=0;i<37-(emp_name[0].length()+emp_name[1].length()+1);i++) {
@@ -132,9 +132,9 @@ class programmer extends employee{
 	
 }
 
-class teamLead extends employee{
-    int basicPay = 150000;
-    teamLead(){
+class teamLead extends employee{//Team Lead class derived from employee
+    int basicPay = 150000;//defined basic pay for a Team lead
+    teamLead(){//constructor for calculation and display of initial message
 		 dA = 97*basicPay/100;
 		 hRA = 10*basicPay/100;
 		 pF = 12*basicPay/100;
@@ -142,7 +142,7 @@ class teamLead extends employee{
 		 System.out.println("Enter details of Team Lead\n");
 	 }
 	
-	void display() {
+	void display() {//display function. Makes use of loops for smooth printing
 		System.out.println("|==================================================|");
 		System.out.print("|	Name: "+emp_name[0]+" "+emp_name[1]);
 		for(int i=0;i<37-(emp_name[0].length()+emp_name[1].length()+1);i++) {
@@ -191,9 +191,9 @@ class teamLead extends employee{
 	
 }
 
-class ASP extends employee{
-    int basicPay = 250000;
-    ASP(){
+class ASP extends employee{//Assistant Project manager class derived from employee
+    int basicPay = 250000;//defined basic pay for a Assistant Project Manager
+    ASP(){//constructor for calculation and display of initial message
 		 dA = 97*basicPay/100;
 		 hRA = 10*basicPay/100;
 		 pF = 12*basicPay/100;
@@ -201,7 +201,7 @@ class ASP extends employee{
 		 System.out.println("Enter details of Assistant Project Manager\n");
 	 }
 	
-	void display() {
+	void display() {//display function. Makes use of loops for smooth printing
 		System.out.println("|==================================================|");
 		System.out.print("|	Name: "+emp_name[0]+" "+emp_name[1]);
 		for(int i=0;i<37-(emp_name[0].length()+emp_name[1].length()+1);i++) {
@@ -225,7 +225,7 @@ class ASP extends employee{
 		}
 		System.out.print("|\n");
 		System.out.println("|--------------------------------------------------|");
-		System.out.println("|	Post: Assisstant Project Manager           |");
+		System.out.println("|	Post: Assistant Project Manager            |");
 		System.out.println("|--------------------------------------------------|");
 		System.out.println("| 	Earnings            | Amount 		   |");
 		System.out.println("|--------------------------------------------------|");
@@ -250,9 +250,9 @@ class ASP extends employee{
 	
 }
 
-class PM extends employee{
-  int basicPay = 450000;
-  PM(){
+class PM extends employee{//Project manager class derived from employee
+  int basicPay = 450000;//defined basic pay for a project manager
+  PM(){//constructor for calculation and display of initial message
 		 dA = 97*basicPay/100;
 		 hRA = 10*basicPay/100;
 		 pF = 12*basicPay/100;
@@ -260,7 +260,7 @@ class PM extends employee{
 		 System.out.println("Enter details of Project Manager");
 	 }	
 	
-	void display() {
+	void display() {//display function. Makes use of loops for smooth printing
 		System.out.println("|==================================================|");
 		System.out.print("|	Name: "+emp_name[0]+" "+emp_name[1]);
 		for(int i=0;i<37-(emp_name[0].length()+emp_name[1].length()+1);i++) {
@@ -309,22 +309,22 @@ class PM extends employee{
 	
 }
 
-public class payslip {
+public class payslip { //class containing main method
 
 	public static void main(String[] args) {
-		programmer p = new programmer();
-		p.getdata();
-		teamLead t = new teamLead();
-		t.getdata();
-		ASP assistant = new ASP();
-		assistant.getdata();
-		PM manager = new PM();
-		manager.getdata();
-		System.out.println("\nDisplaying salary slips of all employees\n");
-		p.display();
-		t.display();
-		assistant.display();
-		manager.display();
+		programmer p = new programmer(); //object of programmer created, constructor invoked
+		p.getdata();//get data of programmer
+		teamLead t = new teamLead();//object of team lead created, constructor invoked
+		t.getdata();//get data of team lead
+		ASP assistant = new ASP();//object of assistant project manager created, constructor invoked
+		assistant.getdata();//get data of assistant project manager
+		PM manager = new PM();//object of project manager created, constructor invoked
+		manager.getdata();//get data of project manager
+		System.out.println("\nDisplaying salary slips for month of July 2024 of all employees\n");
+		p.display(); //display salary slip of programmer
+		t.display(); //display salary slip of team lead
+		assistant.display(); //display salary slip of assistant project manager
+		manager.display(); //display salary slip of Project manager
 	}
 
 }
