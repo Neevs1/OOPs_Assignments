@@ -88,7 +88,7 @@ class magazine extends publication{
 		System.out.println("Enter number of month of current issue");
 		issue = sc.nextInt();
 		issues= new int[issue];
-		for(int i=0;i<issue;i=i++) {
+		for(int i=0;i<issue;i++) {
 			Month month = Month.of(i+1);
 			System.out.println("Enter amount of issues of month: "+month);
 			issues[i]=sc.nextInt();
@@ -202,14 +202,16 @@ public class Assignment2 {
 			case 2:
 				System.out.println("Enter which magazine you want");
 				for(int i=0;i<2;i++) {
-					System.out.print((i+1)+". "+m[i].title);
+					System.out.println((i+1)+". "+m[i].title);
 					m[i].saleCopy();
 				}
 				choice = sc.nextInt();
 			    if(choice>0&&choice<3) {
-			    	b[choice-1].orderCopies();
-			    	totalCopies = totalCopies + b[choice-1].order;
-			    	totalCost = totalCost + b[choice-1].purchaseCost;			    	
+			    	m[choice-1].currentIssue();
+			    	m[choice-1].receiveIssue();
+			    	m[choice-1].orderQty();
+			    	totalCopies = totalCopies + m[choice-1].order;
+			    	totalCost = totalCost + m[choice-1].purchaseCost;			    	
 			    }else {
 			    	System.out.println("Invalid input");
 			    }
