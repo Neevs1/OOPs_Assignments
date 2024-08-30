@@ -4,9 +4,10 @@ import java.time.Month;
 class publication{
 	Scanner sc = new Scanner(System.in);
 	String title;
-	int copies,price,purchaseCost;
+	int copies,price;
+	double purchaseCost;
 	void saleCopy(){
-		System.out.println("Number of copies of "+title+" are "+copies);
+		System.out.println("Number of copies of "+title+" are "+copies+" at "+price);
 	}
 	
 }
@@ -40,8 +41,14 @@ class book extends publication{
 		if (this.copies==0){
 			System.out.println("Sorry, this book is not in stock");
 		}else {
-			System.out.println("Great choice! Please enter number of copies you would like to purchase");
-			order=sc.nextInt();
+			
+			do {
+				System.out.println("Great choice! Please enter number of copies you would like to purchase");
+				order = sc.nextInt();
+				if(order<0) {
+					System.out.println("Inavlid input, please re-enter");
+				}
+				}while(order<0);
 			if(order>this.copies) {
 				System.out.println("Sorry, only "+this.copies+" copies are available");
 				System.out.println("Do you wish to buy "+this.copies+" books?(Respond with Yes if yes)");
@@ -72,12 +79,15 @@ class book extends publication{
 class magazine extends publication{
 	int issue;
 	int issues[];
+	int order;
+	
 	
 	void getdata() {
 		System.out.println("Enter title of Magazine(Use underscore instead of spaces)");
 		title = sc.next();
 		System.out.println("Enter number of month of current issue");
 		issue = sc.nextInt();
+		issues= new int[issue];
 		for(int i=0;i<issue;i=i++) {
 			Month month = Month.of(i+1);
 			System.out.println("Enter amount of issues of month: "+month);
@@ -91,6 +101,41 @@ class magazine extends publication{
 		
 	}
 	void orderQty(){
+		System.out.println("Please enter number of month of issue");
+		int mth=sc.nextInt();
+		if(issues[mth-1]==0) {
+			System.out.println("Sorry, out of stock");
+			
+		}else {
+			do {
+			System.out.println("Enter number of magazines you wish to purchase");
+			order = sc.nextInt();
+			if(order<0) {
+				System.out.println("Inavlid input, please re-enter");
+			}
+			}while(order<0);
+			}
+			if(issues[mth-1]<order) {
+			System.out.println("Sorry, only "+this.copies+" copies are available");
+			System.out.println("Do you wish to buy "+this.copies+" books?(Respond with Yes if yes)");
+			String cont = sc.next().toLowerCase();
+			
+			if(cont.equals("yes")) {
+				order = this.issues[mth-1];
+				System.out.println("Thank you for the purchase");
+				this.purchaseCost=this.order*(this.price-((issues.length-mth)*0.025));
+				System.out.println("Your total cost for "+this.order+" of "+this.title+" is "+this.purchaseCost);
+				this.copies = this.copies-order;
+			}else {
+				System.out.println("We are sorry for the inconvenience");
+			}
+		}else {
+			System.out.println("Thank you for the purchase");
+			this.purchaseCost=this.order*(this.price-((issues.length-mth)*0.025));
+			System.out.println("Your total cost for "+this.order+" of "+this.title+" is "+this.purchaseCost);
+			issues[mth-1]=issues[mth-1]-order;
+			
+		}
 		
 		
 	}
@@ -106,9 +151,10 @@ class magazine extends publication{
 		for(int i=1;i<issue;i++) {
 			if(issues[i-1]!=0) {
 				Month month = Month.of(i);
-				System.out.println(month+",2024");
+				System.out.println(month+",2024 : "+issues[i]);
 			}
 		}
+		System.out.println("There is a discount on older issues of magazines");
 	}
 	
 }
@@ -117,16 +163,17 @@ public class Assignment2 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int totalCost=0,totalCopies = 0;
+		double totalCost=0;
+		int totalCopies = 0;
 		System.out.println("Vendor side");
-		book[] b= new book[5];
-		magazine[] m = new magazine[5];
-		for(int i=0;i<5;i++) {
+		book[] b= new book[2];
+		magazine[] m = new magazine[2];
+		for(int i=0;i<2;i++) {
 			b[i]=new book();
 			System.out.println("Enter data of book number "+(i+1));
 			b[i].getdata();
 		}
-		for(int i=0;i<5;i++) {
+		for(int i=0;i<2;i++) {
 			m[i]=new magazine();
 			System.out.println("Enter data of magazine number "+(i+1));
 			m[i].getdata();
@@ -139,26 +186,37 @@ public class Assignment2 {
 			switch(choice) {
 			case 1:
 				System.out.println("Enter which book you want");
-				for(int i=0;i<5;i++) {
-					System.out.print((i+1)+". "+b[i].title);
+				for(int i=0;i<2;i++) {
+					System.out.println((i+1)+". "+b[i].title);
 					b[i].saleCopy();
 				}
 			    choice = sc.nextInt();
-			    if(choice>0&&choice<6) {
+			    if(choice>0&&choice<3) {
 			    	b[choice-1].orderCopies();
 			    	totalCopies = totalCopies + b[choice-1].order;
 			    	totalCost = totalCost + b[choice-1].purchaseCost;			    	
 			    }else {
 			    	System.out.println("Invalid input");
 			    }
+			    break;
 			case 2:
 				System.out.println("Enter which magazine you want");
-				for(int i=0;i<5;i++) {
+				for(int i=0;i<2;i++) {
 					System.out.print((i+1)+". "+m[i].title);
 					m[i].saleCopy();
 				}
+				choice = sc.nextInt();
+			    if(choice>0&&choice<3) {
+			    	b[choice-1].orderCopies();
+			    	totalCopies = totalCopies + b[choice-1].order;
+			    	totalCost = totalCost + b[choice-1].purchaseCost;			    	
+			    }else {
+			    	System.out.println("Invalid input");
+			    }
+				break;
 			case 3:
 				System.out.println("Invalid input");
+				break;
 				
 			}
 			System.out.println("Do you wish to continue?");
