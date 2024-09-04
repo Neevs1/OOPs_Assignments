@@ -52,7 +52,9 @@ class bicycle implements vehicle{
 
 class motorCycle implements vehicle{
 
-	@Override
+	motorCycle(){
+		
+	}
 	public void gearChange() {
 		// TODO Auto-generated method stub
 		
