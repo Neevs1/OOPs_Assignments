@@ -116,8 +116,8 @@ class magazine extends publication{
 			}while(order<0);
 			}
 			if(issues[mth-1]<order) {
-			System.out.println("Sorry, only "+this.copies+" copies are available");
-			System.out.println("Do you wish to buy "+this.copies+" books?(Respond with Yes if yes)");
+			System.out.println("Sorry, only "+issues[mth-1]+" copies are available");
+			System.out.println("Do you wish to buy "+issues[mth-1]+" books?(Respond with Yes if yes)");
 			String cont = sc.next().toLowerCase();
 			
 			if(cont.equals("yes")) {
