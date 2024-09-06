@@ -14,7 +14,7 @@ interface vehicle{
 
 class bicycle implements vehicle{
 	boolean hasGear;
-	int gearValue;
+	int gearValue,speed;
 	bicycle() {
 		System.out.println(" -------- __@      __@       __@       __@      __~@\r\n"
 				+ " ----- _`\\<,_    _`\\<,_    _`\\<,_     _`\\<,_    _`\\<,_\r\n"
@@ -38,7 +38,12 @@ class bicycle implements vehicle{
 
 	
 	public void speedUp() {
-		// TODO Auto-generated method stub
+		if(speed==80) {
+			System.out.println("Cannot speed up further. Dangerous");		
+		}else {
+			speed=speed+5;
+			System.out.println("Speed is now "+speed);
+		}
 		
 	}
 
