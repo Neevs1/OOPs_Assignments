@@ -41,7 +41,29 @@ class bicycle implements vehicle{
 	
 	public void gearChange() {
 		if(hasGear==true) {
-			if(gearValue>=this.gear){
+			System.out.println("Do you want to upshift(1)/downshift(2)");
+			int choice = sc.nextInt();
+			switch(choice) {
+			case 1:
+				if(gearValue==this.gear) {
+					System.out.println("Cannot upshift further");
+				}else {
+					gearValue++;
+					System.out.println("Gear value is now"+gearValue);
+				}
+				break;
+			case 2:
+				if(gearValue==1) {
+					System.out.println("Cannot downshift further");
+				}else {
+					gearValue--;
+					System.out.println("Gear value is now"+gearValue);
+				}
+				break;
+			default:
+				System.out.println("Invalid input");
+				break; 
+				
 				
 			}
 		}else {
@@ -64,7 +86,14 @@ class bicycle implements vehicle{
 
 	
 	public void applyBrakes() {
-		// TODO Auto-generated method stub
+		if(speed==0) {
+			System.out.println("Cannot decrease speed further. You are at a standstill");		
+		}else {
+			speed=speed-5;
+			System.out.println("Speed is now "+speed);
+		}
+		
+		
 		
 	}
 	
@@ -77,11 +106,16 @@ class motorCycle implements vehicle{
 
 	motorCycle(){
 		do {
-			System.out.println("                   .--------.\r\n"
-					+ "              ____/_____|___ \\___\r\n"
-					+ "             O    _   - |   _   ,*\r\n"
-					+ "              '--(_)-------(_)--'");	
-			System.out.println("Enter whether your car is Automatic(true/false)");
+			System.out.println("  r==\r\n"
+					+ "        _  //\r\n"
+					+ "       |_)//(''''':\r\n"
+					+ "         //  \\_____:_____.-----.P\r\n"
+					+ "        //   | ===  |   /        \\\r\n"
+					+ "    .:'//.   \\ \\=|   \\ /  .:'':.\r\n"
+					+ "   :' // ':   \\ \\ ''..'--:'-.. ':\r\n"
+					+ "   '. '' .'    \\:.....:--'.-'' .'\r\n"
+					+ "    ':..:'                ':..:'");	
+			System.out.println("Enter whether your bike is Automatic(true/false)");
 			auto = sc.next().toLowerCase();
 			if(auto.equals("true")==false&&auto.equals("false")==false){
 				System.out.println("Invalid input");		
@@ -92,20 +126,181 @@ class motorCycle implements vehicle{
 			do {
 				System.out.println("Enter number of gears");
 				gears = sc.nextInt();
-				if(gears<0||(isAuto == false && gears>7)) {
+				if(gears<0||(isAuto == false && gears>6)) {
 					System.out.println("Invalid input");				
 				}
 				}while(gears<0||(isAuto == false && gears>6));
 		
 	}
 	public void gearChange() {
-		// TODO Auto-generated method stub
+		if(isAuto==true) {
+			System.out.println("Car is currently in gear "+currentGear+"\nPlease type which gear you want to change to\nP R N D");
+			char newgear = sc.next().toLowerCase().charAt(0);	
+			switch(newgear) {
+			case 'p':
+				System.out.println("Car is in p i.e. Park");
+				currentGear=newgear;
+				break;
+			case 'r':
+				System.out.println("Car is in reverse");
+				currentGear=newgear;
+				break;
+			case 'n':
+				System.out.println("Car is in neutral");
+				currentGear=newgear;
+				break;
+			case 'd':
+				System.out.println("Car is in drive");
+				currentGear=newgear;
+				break;
+				}
+		}else {
+			System.out.println("Type PRESS to press clutch");
+			String input = sc.next().toUpperCase();
+			if(input.equals("PRESS")) {
+				clutchPressed = true;
+				System.out.println("Do you want to upshift(1) or downshift(2)?");
+				int choice = sc.nextInt();
+				if(choice==1) {
+					if(gearValue==gears) {
+						System.out.println("Cannot upshift further");
+					}else {
+						gearValue++;
+						System.out.println("Car is now in gear "+gearValue+" 🚗");
+					}
+				}else if(choice==2) {
+					if(gearValue==0) {
+						System.out.println("Car is in neutral,cannot downshift further");
+					}else if(gearValue==1) {
+						gearValue--;
+						System.out.println("Car is now in neutral 🚗");
+						isNeutral=true;
+					}
+				}else {
+					System.out.println("Invalid choice.Operation terminated");
+				}
+			}else {
+				System.out.println("Clutch not pressed. Cannot change gears.Operation terminated");
+			}
+		}
 		
 	}
 
 	@Override
 	public void speedUp() {
-		// TODO Auto-generated method stub
+		if(isAuto==false&&clutchPressed==true) {
+			System.out.println("Please release clutch(type release)");
+			String pressed = sc.next();
+			if(pressed.equals("release")) {
+				clutchPressed=false;
+			}
+		}
+		
+		System.out.println("To speed up, press accelerator(type press)");
+		String pressed = sc.next();
+		if(pressed.equals("press")&&isAuto==false) {
+			if(clutchPressed==true) {
+				System.out.println("Cannot speed up while clutch is pressed. Operation terminated");
+			}else {
+				switch(gearValue) {
+				case 0:
+					System.out.println("Cannot speed up in neutral");
+					speed=0;
+					break;
+				case 1:
+					if(speed>=25) {
+						System.out.println("Cannot increase speed. Please upshift to increase speed");
+					}else if(speed==20){
+						speed = speed+5;
+						System.out.println("Speed now increased to "+speed+".");
+						System.out.println("Please upshift before increaing speed again");
+					}else {
+						speed = speed+5;
+						System.out.println("Speed now increased to "+speed+".");
+						
+					}
+				    break;
+				case 2:
+					if(speed>=40) {
+						System.out.println("Cannot increase speed. Please upshift to increase speed");
+					}else if(speed==35){
+						speed = speed+5;
+						System.out.println("Speed now increased to "+speed+".");
+						System.out.println("Please upshift before increaing speed again");
+					}else {
+						speed = speed+5;
+						System.out.println("Speed now increased to "+speed+".");
+					}
+				    break;
+				   
+				case 3:
+					if(speed==60) {
+						System.out.println("Cannot increase speed. Please upshift to increase speed");
+					}else if(speed==20){
+						speed = speed+5;
+						System.out.println("Speed now increased to "+speed+".");
+						System.out.println("Please upshift before increaing speed again");
+					}else {
+						speed = speed+5;
+						System.out.println("Speed now increased to "+speed+".");
+					}
+				    break;
+					
+				case 4:
+					if(speed>=80) {
+						System.out.println("Cannot increase speed. Please upshift to increase speed");
+					}else if(speed==75){
+						speed = speed+5;
+						System.out.println("Speed now increased to "+speed+".");
+						System.out.println("Please upshift before increaing speed again");
+					}else {
+						speed = speed+5;
+						System.out.println("Speed now increased to "+speed+".");
+					}
+				    break;
+					
+				case 5:
+					if(speed>=100) {
+						System.out.println("Cannot increase speed. Please upshift to increase speed");
+					}else if(speed==95){
+						speed = speed+5;
+						System.out.println("Speed now increased to "+speed+".");
+						System.out.println("Please upshift before increaing speed again");
+					}else {
+						speed = speed+5;
+						System.out.println("Speed now increased to "+speed+".");
+					}
+				    break;
+					
+				case 6:
+					if(speed>=120) {
+						System.out.println("Cannot increase speed. Please upshift to increase speed");
+					}else if(speed==115){
+						speed = speed+5;
+						System.out.println("Speed now increased to "+speed+".");
+						System.out.println("Please upshift before increaing speed again");
+					}else {
+						speed = speed+5;
+						System.out.println("Speed now increased to "+speed+".");
+					}
+				    break;
+					
+			
+				
+				}
+			}
+		}else if(pressed.equals("press")&&isAuto==true) {
+			if (currentGear != 'd'){
+					System.out.println("Put Car in drive to accelerate");
+			}else {
+				if(speed<200) {
+					speed=speed+5;
+					System.out.println("Speed of car is now"+speed);
+				}else {
+					System.out.println("Cannot speed up further");
+				}
+			}
+		}
 		
 	}
 
