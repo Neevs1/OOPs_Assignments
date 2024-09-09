@@ -14,7 +14,7 @@ interface vehicle{
 
 class bicycle implements vehicle{
 	boolean hasGear;
-	int gearValue,speed;
+	int gearValue=1,speed,gear;
 	bicycle() {
 		System.out.println(" -------- __@      __@       __@       __@      __~@\r\n"
 				+ " ----- _`\\<,_    _`\\<,_    _`\\<,_     _`\\<,_    _`\\<,_\r\n"
@@ -24,6 +24,14 @@ class bicycle implements vehicle{
 	 String gear = sc.next();
 	 if(gear.equals("yes")) {
 		 hasGear=true;
+		 do {
+			 System.out.println("Please enter number of gears");
+			 this.gear = sc.nextInt();
+			 if(this.gear>0&&this.gear<=27) {
+				 System.out.println("Invalid input");
+			 }
+		 }while(this.gear>0&&this.gear<=27);
+		 
 	 }else {
 		 hasGear=false;
 	 }
@@ -32,6 +40,13 @@ class bicycle implements vehicle{
 
 	
 	public void gearChange() {
+		if(hasGear==true) {
+			if(gearValue>=this.gear){
+				
+			}
+		}else {
+			System.out.println("Your cycle does not have changeable gears");
+		}
 		
 		
 	}
@@ -56,8 +71,31 @@ class bicycle implements vehicle{
 }
 
 class motorCycle implements vehicle{
+	String auto;
+	int gears;
+	boolean isAuto;
 
 	motorCycle(){
+		do {
+			System.out.println("                   .--------.\r\n"
+					+ "              ____/_____|___ \\___\r\n"
+					+ "             O    _   - |   _   ,*\r\n"
+					+ "              '--(_)-------(_)--'");	
+			System.out.println("Enter whether your car is Automatic(true/false)");
+			auto = sc.next().toLowerCase();
+			if(auto.equals("true")==false&&auto.equals("false")==false){
+				System.out.println("Invalid input");		
+			}else {
+				isAuto = Boolean.parseBoolean(auto);
+			}
+			}while(!auto.equals("true")&&!auto.equals("false"));
+			do {
+				System.out.println("Enter number of gears");
+				gears = sc.nextInt();
+				if(gears<0||(isAuto == false && gears>7)) {
+					System.out.println("Invalid input");				
+				}
+				}while(gears<0||(isAuto == false && gears>6));
 		
 	}
 	public void gearChange() {
