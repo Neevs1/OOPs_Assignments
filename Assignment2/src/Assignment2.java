@@ -148,9 +148,9 @@ class magazine extends publication{ //magazine class declared
 	
 	void receiveIssue() { //to display all available issues
 		System.out.println("We have issues for the following months");
-		for(int i=1;i<issue;i++) {
-			if(issues[i-1]!=0) {
-				Month month = Month.of(i);
+		for(int i=0;i<issue;i++) {
+			if(issues[i]!=0) {
+				Month month = Month.of(i+1);
 				System.out.println(month+",2024 : "+issues[i]);
 			}
 		}
