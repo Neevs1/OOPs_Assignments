@@ -3,7 +3,7 @@
  */
 import java.util.*;
 
-interface vehicle{
+interface vehicle{ //implemented vehicle interface with common methods
 	Scanner sc = new Scanner(System.in);
 	void gearChange();
 	void speedUp();
@@ -12,10 +12,10 @@ interface vehicle{
 	
 }
 
-class bicycle implements vehicle{
+class bicycle implements vehicle{ //declared bicycle class
 	boolean hasGear;
 	int gearValue=1,speed,gear;
-	bicycle() {
+	bicycle() { //constructor for input
 		System.out.println(" -------- __@      __@       __@       __@      __~@\r\n"
 				+ " ----- _`\\<,_    _`\\<,_    _`\\<,_     _`\\<,_    _`\\<,_\r\n"
 				+ " ---- (*)/ (*)  (*)/ (*)  (*)/ (*)  (*)/ (*)  (*)/ (*)\r\n"
@@ -39,8 +39,8 @@ class bicycle implements vehicle{
 	}
 
 	
-	public void gearChange() {
-		if(hasGear==true) {
+	public void gearChange() { //method to change gears
+		if(hasGear==true) { //only if gears exist
 			System.out.println("Do you want to upshift(1)/downshift(2)");
 			int choice = sc.nextInt();
 			switch(choice) {
@@ -66,7 +66,7 @@ class bicycle implements vehicle{
 				
 				
 			}
-		}else {
+		}else { //non changeable gears
 			System.out.println("Your cycle does not have changeable gears");
 		}
 		
@@ -74,7 +74,7 @@ class bicycle implements vehicle{
 	}
 
 	
-	public void speedUp() {
+	public void speedUp() { //increase speed
 		if(speed==80) {
 			System.out.println("Cannot speed up further. Dangerous");		
 		}else {
@@ -85,7 +85,7 @@ class bicycle implements vehicle{
 	}
 
 	
-	public void applyBrakes() {
+	public void applyBrakes() { //apply brakes
 		if(speed==0) {
 			System.out.println("Cannot decrease speed further. You are at a standstill");		
 		}else {
@@ -99,12 +99,12 @@ class bicycle implements vehicle{
 	
 }
 
-class motorCycle implements vehicle{
+class motorCycle implements vehicle{ //motorcycle class
 	boolean isAuto,gasPressed,clutchPressed,brakePressed,stalled,isNeutral;
 	int speed=0,gearValue =0,gears;
 	String auto;	
 
-	motorCycle(){
+	motorCycle(){ //constructor for input
 		do {
 			System.out.println("  r==\r\n"
 					+ "        _  //\r\n"
@@ -132,11 +132,11 @@ class motorCycle implements vehicle{
 				}while(gears<0||(isAuto == false && gears>6));
 		
 	}
-	public void gearChange() {
+	public void gearChange() { //changing gears
 		if(isAuto==true) {
 			System.out.println("Cannot change gears in CVT two wheelers");
 			
-		}else {
+		}else { //only for manual bikes
 			System.out.println("Type PRESS to press clutch");
 			String input = sc.next().toUpperCase();
 			if(input.equals("PRESS")) {
@@ -169,7 +169,7 @@ class motorCycle implements vehicle{
 	}
 
 	@Override
-	public void speedUp() {
+	public void speedUp() { //speeding up
 		if(isAuto==false&&clutchPressed==true) {
 			System.out.println("Please release clutch(type release)");
 			String pressed = sc.next();
@@ -285,14 +285,94 @@ class motorCycle implements vehicle{
 	}
 
 	@Override
-	public void applyBrakes() {
-		// TODO Auto-generated method stub
+	public void applyBrakes() { //applying brakes
+		if(isAuto && speed!=5) {
+			speed=speed-5;
+			System.out.println("Speed is now "+speed);
+		}else if(isAuto&&speed==5) {
+			speed=0;
+			System.out.println("Car has stopped now");
+		}else if(isAuto==false) {
+			switch(gearValue) {
+			case 0:
+				System.out.println("Car already stopped");
+				speed=0;
+				break;
+			case 1:
+				if(speed==5) {
+					System.out.println("Car is stopping please press clutch type press");
+					String pressed = sc.next();
+					if(pressed.equals("press")) {
+						clutchPressed = true;
+						speed=0;
+						System.out.println("Your car has stopped, shifting to neutral");
+						gearValue--;						
+					}
+				}else {
+					speed = speed-5;
+					System.out.println("Speed now decreased to "+speed+".");
+					
+				}
+			    break;
+			case 2:
+				if(speed==20) {
+					System.out.println("Please downshift");
+				
+				}else {
+					speed = speed-5;
+					System.out.println("Speed now decreased to "+speed+".");
+				}
+			    break;
+			   
+			case 3:
+				if(speed==40) {
+					System.out.println("Please downshift");
+				
+				}else {
+					speed = speed-5;
+					System.out.println("Speed now decreased to "+speed+".");
+				}
+			    break;
+				
+			case 4:
+				if(speed==60) {
+					System.out.println("Please downshift");
+				
+				}else {
+					speed = speed-5;
+					System.out.println("Speed now decreased to "+speed+".");
+				}
+			    break;
+				
+			case 5:
+				if(speed==80) {
+					System.out.println("Please downshift");
+				
+				}else {
+					speed = speed-5;
+					System.out.println("Speed now decreased to "+speed+".");
+				}
+			    break;
+				
+			case 6:
+				if(speed==100) {
+					System.out.println("Please downshift");
+				
+				}else {
+					speed = speed-5;
+					System.out.println("Speed now decreased to "+speed+".");
+				}
+			    break;
+				
 		
+			
+			}
+		}
 	}
 	
 }
 
-class car implements vehicle{
+class car implements vehicle{ //car class
 	boolean isAuto,gasPressed,clutchPressed,brakePressed,stalled,isNeutral;
 	int speed=0,gearValue =0,gears;
 	char currentGear='p';
@@ -320,7 +400,7 @@ class car implements vehicle{
 			}while(gears<0||(isAuto == false && gears>6));
 			
 	}
-	public void gearChange() {
+	public void gearChange() { //change gears
 		if(isAuto==true) {
 			System.out.println("Car is currently in gear "+currentGear+"\nPlease type which gear you want to change to\nP R N D");
 			char newgear = sc.next().toLowerCase().charAt(0);	
@@ -493,7 +573,88 @@ class car implements vehicle{
 
 	@Override
 	public void applyBrakes() {
-		// TODO Auto-generated method stub
+		if(isAuto && speed!=5) {
+			speed=speed-5;
+			System.out.println("Speed is now "+speed);
+		}else if(isAuto&&speed==5) {
+			speed=0;
+			System.out.println("Car has stopped now");
+		}else if(isAuto==false) {
+			switch(gearValue) {
+			case 0:
+				System.out.println("Car already stopped");
+				speed=0;
+				break;
+			case 1:
+				if(speed==5) {
+					System.out.println("Car is stopping please press clutch type press");
+					String pressed = sc.next();
+					if(pressed.equals("press")) {
+						clutchPressed = true;
+						speed=0;
+						System.out.println("Your car has stopped, shifting to neutral");
+						gearValue--;						
+					}
+				}else {
+					speed = speed-5;
+					System.out.println("Speed now decreased to "+speed+".");
+					
+				}
+			    break;
+			case 2:
+				if(speed==20) {
+					System.out.println("Please downshift");
+				
+				}else {
+					speed = speed-5;
+					System.out.println("Speed now decreased to "+speed+".");
+				}
+			    break;
+			   
+			case 3:
+				if(speed==40) {
+					System.out.println("Please downshift");
+				
+				}else {
+					speed = speed-5;
+					System.out.println("Speed now decreased to "+speed+".");
+				}
+			    break;
+				
+			case 4:
+				if(speed==60) {
+					System.out.println("Please downshift");
+				
+				}else {
+					speed = speed-5;
+					System.out.println("Speed now decreased to "+speed+".");
+				}
+			    break;
+				
+			case 5:
+				if(speed==80) {
+					System.out.println("Please downshift");
+				
+				}else {
+					speed = speed-5;
+					System.out.println("Speed now decreased to "+speed+".");
+				}
+			    break;
+				
+			case 6:
+				if(speed==100) {
+					System.out.println("Please downshift");
+				
+				}else {
+					speed = speed-5;
+					System.out.println("Speed now decreased to "+speed+".");
+				}
+			    break;
+				
+		
+			
+			}
+		}
 		
 	}
 	
@@ -503,30 +664,89 @@ public class Assignment5 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		car c=new car();
-		String cont;
 		
-		do {
-		 
-		 System.out.println("Enter operation to be done on car");
-		 int choice = sc.nextInt();
-		 switch(choice) {
-		 case 1:
-			 c.gearChange();
-			 break;
-		 case 2:
-			 c.speedUp();
-			 break;
-		 case 3:
-			 c.applyBrakes();
-			 break;
-	     default:
-	    	 System.out.println("Invalid input");
-		 }
-		 System.out.println("Do you wish to continue?(type yes to continue)");
-		 cont = sc.next().toLowerCase();		
+		
+		
+		String cont;
+		System.out.println("Please select your vehicle");
+		System.out.println("1.Bicycle\n2.Motorcycle\n3.Car");
+		int vchoice = sc.nextInt();
+		switch(vchoice) {
+		case 3:
+			car c=new car();
+			do {
+				 System.out.println("Enter operation to be done on car");
+				 System.out.println("1.Change Gear\n2.Increase speed\n3.Apply brakes");
+					 int choice = sc.nextInt();
+					 switch(choice) {
+					 case 1:
+						 c.gearChange();
+						 break;
+					 case 2:
+						 c.speedUp();
+						 break;
+					 case 3:
+						 c.applyBrakes();
+						 break;
+				     default:
+				    	 System.out.println("Invalid input");
+					 }
+					 System.out.println("Do you wish to continue?(type yes to continue)");
+					 cont = sc.next().toLowerCase();		
 
-	  }while(cont.equals("yes"));
+				  }while(cont.equals("yes"));
+					break;
+		case 2:
+			motorCycle m = new motorCycle();
+			do {
+			System.out.println("Enter operation to be done on Motorbike");
+			 int choice = sc.nextInt();
+			 switch(choice) {
+			 case 1:
+				 m.gearChange();
+				 break;
+			 case 2:
+				 m.speedUp();
+				 break;
+			 case 3:
+				 m.applyBrakes();
+				 break;
+		     default:
+		    	 System.out.println("Invalid input");
+			 }
+			 System.out.println("Do you wish to continue?(type yes to continue)");
+			 cont = sc.next().toLowerCase();		
+
+		  }while(cont.equals("yes"));
+			break;
+		case 1:
+			bicycle b = new bicycle();
+			do {
+				 System.out.println("Enter operation to be done on cycle");
+					 int choice = sc.nextInt();
+					 switch(choice) {
+					 case 1:
+						 b.gearChange();
+						 break;
+					 case 2:
+						 b.speedUp();
+						 break;
+					 case 3:
+						 b.applyBrakes();
+						 break;
+				     default:
+				    	 System.out.println("Invalid input");
+					 }
+					 System.out.println("Do you wish to continue?(type yes to continue)");
+					 cont = sc.next().toLowerCase();		
+
+				  }while(cont.equals("yes"));
+					break;
+				default:
+					System.out.println("Invalid input");
+				    break;
+			
+		}
 
 }
 }
