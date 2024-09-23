@@ -100,9 +100,9 @@ class bicycle implements vehicle{
 }
 
 class motorCycle implements vehicle{
-	String auto;
-	int gears;
-	boolean isAuto;
+	boolean isAuto,gasPressed,clutchPressed,brakePressed,stalled,isNeutral;
+	int speed=0,gearValue =0,gears;
+	String auto;	
 
 	motorCycle(){
 		do {
@@ -134,26 +134,8 @@ class motorCycle implements vehicle{
 	}
 	public void gearChange() {
 		if(isAuto==true) {
-			System.out.println("Car is currently in gear "+currentGear+"\nPlease type which gear you want to change to\nP R N D");
-			char newgear = sc.next().toLowerCase().charAt(0);	
-			switch(newgear) {
-			case 'p':
-				System.out.println("Car is in p i.e. Park");
-				currentGear=newgear;
-				break;
-			case 'r':
-				System.out.println("Car is in reverse");
-				currentGear=newgear;
-				break;
-			case 'n':
-				System.out.println("Car is in neutral");
-				currentGear=newgear;
-				break;
-			case 'd':
-				System.out.println("Car is in drive");
-				currentGear=newgear;
-				break;
-				}
+			System.out.println("Cannot change gears in CVT two wheelers");
+			
 		}else {
 			System.out.println("Type PRESS to press clutch");
 			String input = sc.next().toUpperCase();
@@ -166,14 +148,14 @@ class motorCycle implements vehicle{
 						System.out.println("Cannot upshift further");
 					}else {
 						gearValue++;
-						System.out.println("Car is now in gear "+gearValue+" 🚗");
+						System.out.println("Car is now in gear "+gearValue+" 🏍️");
 					}
 				}else if(choice==2) {
 					if(gearValue==0) {
 						System.out.println("Car is in neutral,cannot downshift further");
 					}else if(gearValue==1) {
 						gearValue--;
-						System.out.println("Car is now in neutral 🚗");
+						System.out.println("Car is now in neutral 🏍️");
 						isNeutral=true;
 					}
 				}else {
@@ -290,16 +272,14 @@ class motorCycle implements vehicle{
 				}
 			}
 		}else if(pressed.equals("press")&&isAuto==true) {
-			if (currentGear != 'd'){
-					System.out.println("Put Car in drive to accelerate");
-			}else {
-				if(speed<200) {
+			
+				if(speed<150) {
 					speed=speed+5;
-					System.out.println("Speed of car is now"+speed);
+					System.out.println("Speed of bike is now"+speed);
 				}else {
 					System.out.println("Cannot speed up further");
 				}
-			}
+			
 		}
 		
 	}
