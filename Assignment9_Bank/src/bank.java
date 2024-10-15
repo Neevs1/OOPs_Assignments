@@ -12,15 +12,22 @@ class InvalidAgeException extends Exception{
 	};
 }
 
+class WithdrawalException extends Exception{
+	WithdrawalException(){
+		
+	};
+}
+
 class CreateAccount{
 	Scanner sc=new Scanner(System.in);
 	boolean validity;	
 	String[] name = new String[3];
 	int Aadhar[]= {0,0,0};
 	long phoneNum=0,bankBalance;
-	int initial_deposit,age=-1,accountID=1;
+	int initial_deposit,age=-1,accountID;
 	char gender='a';
 	String email,PAN,pwd;
+	static int currentID = 10000;
 	void createAccount(){
 		
 		System.out.println("Weclome to SBI bank");
@@ -134,7 +141,9 @@ class CreateAccount{
 		}while(age<=0);
 		System.out.println("Please enter secure password");
 		pwd = sc.next();
-		
+		currentID++;
+		this.accountID = currentID;
+		System.out.println("Account sucessfully created! Your account ID is "+this.accountID);
 		
 	}
 }
@@ -152,7 +161,7 @@ class login extends CreateAccount{
 		}catch(NumberFormatException e){
 			System.out.println("Invalid account ID, retry");
 		}
-		return(pwd.equals(password)&&AccID==accountID);
+		return(pwd.equals(password)&&AccID==this.accountID);
 	
 	}
 }
@@ -170,8 +179,34 @@ class operations extends login{
 	
 	void deposit() {
 		System.out.println("Enter amount you want to deposit");
-		int money=Integer.parseInt(sc.next());
-		bankBalance=bankBalance+money;
+		try {
+			int money=Integer.parseInt(sc.next());
+			bankBalance=bankBalance+money;
+			System.out.println("Deposited amount is "+money+"\nBalance is now"+bankBalance);
+		}catch(NumberFormatException e) {
+			System.out.println("Invalid balance,please enter integer value");
+		}
+		
+	}
+	void withdraw() {
+		System.out.println("Enter amount you want to else");
+		try {
+			int money=Integer.parseInt(sc.next());
+			if(bankBalance-money<0) {
+				throw new WithdrawalException();
+			}else if(bankBalance-money==0) {
+				System.out.println("ALERT! Your bank account is empty");
+				bankBalance=0;				
+			}else {
+				bankBalance=bankBalance+money;
+				System.out.println("Withdrawn amount is "+money+"\nBalance is now"+bankBalance);
+			}
+		}catch(NumberFormatException e) {
+			System.out.println("Invalid balance,please enter integer value");
+		}catch(WithdrawalException e) {
+			System.out.println("Withdrawal amount less than balance. Your account does not permit overdraft");
+		}
+		
 	}
 	
 }
@@ -179,12 +214,58 @@ class operations extends login{
 public class bank {
 
 	public static void main(String[] args) {
-		operations o = new operations();
-		o.createAccount();
-		if(o.loginSuccess()) {
-			o.displayDetails();
+		Scanner sc = new Scanner(System.in);
+		operations[] o = new operations[5];
+		int userCount =0,thisUser = 0;
+		boolean found=false;
+		System.out.println("Welcome to SBI");
+		System.out.println("Please select option");
+		System.out.println("1.New User");
+		System.out.println("2.Existing user");
+		int user = sc.nextInt();
+		switch(user) {
+		case 1:
+			o[userCount]=new operations();
+			o[userCount].createAccount();
+			userCount++;
+		case 2:
+			System.out.println("Enter account ID");
+			int ID = sc.nextInt();
+			for(int i=0;i<userCount;i++) {
+				if(ID==o[i].accountID) {
+					thisUser=i;
+					found=true;
+				}
+			}
+			if(found) {
+			   if(o[thisUser].loginSuccess()) {
+				   do {
+					   System.out.println("Please enter operation");
+					   System.out.println("1.Withdraw");
+					   System.out.println("2.Deposit");
+					   System.out.println("3.View details");
+					   int choice = sc.nextInt();
+					   switch(choice) {
+					   case 1:
+						   o[thisUser].withdraw();
+						   break;
+					   case 2:
+						   o[thisUser].deposit();
+						   break;
+					   case 3:
+						   o[thisUser].displayDetails();
+						   break;
+					   default:
+						   System.out.println("Invalid operation");
+					   }
+					   
+				   }while(false);
+			   }
+			  
+			}
 		}
 		
+			
 		
 		
 
