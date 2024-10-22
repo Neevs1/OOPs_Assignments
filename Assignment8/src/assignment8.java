@@ -6,7 +6,23 @@ class operations{
 	String name,address;
 	Scanner sc = new Scanner(System.in);
 	//declared required variables
+	void create() {
+		File dB = new File("StudentRecord.txt");
+		try {
+			if(dB.createNewFile()) {
+				System.out.println("Database created succesfully!");
+			}else {
+				System.out.println("Database already exists!Please modify it");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	void add() { //adds a new record
+		
+		
 		
 	}
 	
