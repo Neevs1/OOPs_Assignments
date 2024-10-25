@@ -5,9 +5,10 @@ class operations{
 	int rollNum,marks,id;
 	String name,address;
 	Scanner sc = new Scanner(System.in);
+	File dB = new File("StudentRecord.txt");
 	//declared required variables
 	void create() {
-		File dB = new File("StudentRecord.txt");
+		
 		try {
 			if(dB.createNewFile()) {
 				System.out.println("Database created succesfully!");
@@ -20,7 +21,7 @@ class operations{
 		}
 	}
 	
-	void add() { //adds a new record
+	void add(){ //adds a new record
 		
 		
 		

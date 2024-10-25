@@ -16,6 +16,8 @@ ShoppingCart cart = new ShoppingCart();
 		
 		//pay by credit card
 		cart.pay(new CreditCardStrategy("Aparna Bindage", "1234567890123456", "786", "12/15"));
+		
+		//add switch-case for choice 
 	}
 
 }

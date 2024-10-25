@@ -37,4 +37,5 @@ public class HatchbackCar implements Car {
 		{
 			return engine;
 		}
+		//Task : Add getColor(), setColor()
 }
